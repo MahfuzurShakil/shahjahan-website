@@ -24,12 +24,14 @@ function NewsTicker() {
 // Animated stat counter
 function StatCard({ stat, delay }) {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
+  // Safely convert to number — works for both numeric and string values
+  const endValue = Number(stat.value) || 0;
 
   return (
     <div ref={ref} className="stat-card" style={{ animationDelay: `${delay}s` }}>
       <div className="stat-value">
         {inView ? (
-          <CountUp end={parseInt(stat.value)} duration={2.5} separator="," />
+          <CountUp end={endValue} duration={2.5} />
         ) : '0'}
         <span className="stat-suffix">{stat.suffix}</span>
       </div>
