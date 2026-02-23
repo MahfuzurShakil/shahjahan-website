@@ -3,13 +3,12 @@
 # Place this file in the ROOT of your project
 
 [build]
-  # Command to build the project
-  command = "npm run build"
-  # Directory where built files go
+  command = "npm ci && npx vite build"
   publish = "dist"
 
 [build.environment]
   NODE_VERSION = "20"
+  NPM_FLAGS = "--prefer-offline"
 
 # SPA routing — all routes serve index.html
 [[redirects]]
