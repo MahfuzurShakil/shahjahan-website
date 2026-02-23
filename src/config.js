@@ -26,7 +26,7 @@
  */
 
 // ⬇️ PASTE YOUR GOOGLE SHEET ID HERE (between the quotes)
-const SHEET_ID = 'YOUR_GOOGLE_SHEET_ID_HERE';
+const SHEET_ID = '1IlVg7ZPvx72_ts8ww7WiVb75stoX1YapMsy4ar4uciY';
 
 export const CONFIG = {
 
@@ -54,13 +54,13 @@ export const CONFIG = {
   // ── Formspree (Contact Form → Email) ──────────────────────────
   // Get your ID from https://formspree.io (free signup)
   formspree: {
-    id: 'YOUR_FORMSPREE_ID_HERE', // e.g. 'xpzvwkrg'
+    id: 'mlgwojpq', // e.g. 'xpzvwkrg'
     get url() { return `https://formspree.io/f/${this.id}`; },
   },
 
   // ── WhatsApp ───────────────────────────────────────────────────
   whatsapp: {
-    number: '8801XXXXXXXXX', // Format: 8801711234567
+    number: '8801867780753', // Format: 8801711234567
     get link() { return `https://wa.me/${this.number}`; },
     get messageLink() {
       const msg = encodeURIComponent('আসসালামু আলাইকুম, আমি ওয়েবসাইট থেকে যোগাযোগ করছি।');
