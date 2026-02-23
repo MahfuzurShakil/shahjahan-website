@@ -1,0 +1,224 @@
+.about-bio-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.about-photo-wrap {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.about-photo {
+  width: 100%;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.about-photo-wrap:hover .about-photo { transform: scale(1.02); }
+
+.about-photo-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem 1.5rem 1.5rem;
+  background: linear-gradient(to top, rgba(13,59,46,0.9), transparent);
+}
+
+.about-party-badge {
+  background: var(--gold);
+  color: var(--forest);
+  font-weight: 800;
+  font-size: 0.9rem;
+  padding: 0.4rem 1rem;
+  border-radius: 8px;
+  letter-spacing: 0.06em;
+}
+
+.about-info-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(201,168,76,0.12);
+}
+
+.about-info-title {
+  font-family: var(--font-bangla);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--forest);
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--gold);
+}
+
+.about-info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(201,168,76,0.1);
+  font-size: 0.88rem;
+}
+
+.about-info-label {
+  color: var(--text-muted);
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.about-info-value {
+  color: var(--charcoal);
+  font-weight: 600;
+  text-align: right;
+}
+
+.about-bio-paras {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  color: var(--text-muted);
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--gold), rgba(201,168,76,0.2));
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: calc(50% + 2.5rem);
+  margin-bottom: 2rem;
+  position: relative;
+  opacity: 0;
+}
+
+.timeline.visible .timeline-item {
+  animation: fadeUp 0.6s ease both;
+}
+
+.timeline-item.right {
+  justify-content: flex-start;
+  padding-right: 0;
+  padding-left: calc(50% + 2.5rem);
+}
+
+.timeline-connector {
+  position: absolute;
+  top: 20px;
+  right: calc(50% - 10px);
+  width: 20px;
+  height: 20px;
+  background: var(--gold);
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 0 0 2px var(--gold);
+  z-index: 1;
+}
+
+.timeline-item.right .timeline-connector {
+  right: auto;
+  left: calc(50% - 10px);
+}
+
+.timeline-card {
+  background: white;
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(201,168,76,0.12);
+  max-width: 280px;
+  transition: var(--transition);
+}
+
+.timeline-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(13,59,46,0.12);
+}
+
+.timeline-year {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+
+.timeline-event {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* Achievements */
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.achievement-card {
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.achievement-icon {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+}
+
+.achievement-title {
+  font-family: var(--font-bangla);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--forest);
+  margin-bottom: 0.75rem;
+}
+
+.achievement-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+  .about-bio-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .achievements-grid { grid-template-columns: 1fr 1fr; }
+
+  .timeline::before { left: 20px; }
+  .timeline-item {
+    justify-content: flex-start;
+    padding-right: 0;
+    padding-left: 4rem;
+  }
+  .timeline-item.right {
+    padding-left: 4rem;
+  }
+  .timeline-connector { right: auto; left: 10px; }
+  .timeline-item.right .timeline-connector { left: 10px; }
+  .timeline-card { max-width: 100%; }
+}
+
+@media (max-width: 600px) {
+  .achievements-grid { grid-template-columns: 1fr; }
+}
