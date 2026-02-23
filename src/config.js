@@ -1,78 +1,50 @@
-/**
- * config.js
- * ─────────────────────────────────────────────────────────────────
- * Central configuration for all external services.
- *
- * HOW TO SETUP (read carefully):
- *
- * ── GOOGLE SHEETS ────────────────────────────────────────────────
- * 1. Open your Google Sheet
- * 2. Copy the ID from the URL:
- *    https://docs.google.com/spreadsheets/d/[ THIS PART ]/edit
- * 3. Paste it as SHEET_ID below
- * 4. Each sheet tab name must match the sheetName values below
- * 5. File → Share → Publish to web → Select tab → CSV → Publish
- *    Do this for EACH tab (news, gallery, videos)
- *
- * ── FORMSPREE (Contact Form → Email) ────────────────────────────
- * 1. Go to https://formspree.io → Sign up free
- * 2. Create a new form → copy the form ID (looks like: xpzvwkrg)
- * 3. Paste it as FORMSPREE_ID below
- *
- * ── WHATSAPP ─────────────────────────────────────────────────────
- * Just update the phone number in format: 8801XXXXXXXXX
- * (country code 880, no + sign, no spaces)
- * ─────────────────────────────────────────────────────────────────
- */
+// ─────────────────────────────────────────────────────────────────
+// config.js — Central configuration for all external services
+// ─────────────────────────────────────────────────────────────────
 
-// ⬇️ PASTE YOUR GOOGLE SHEET ID HERE (between the quotes)
+// ── Google Sheets ─────────────────────────────────────────────────
+// Paste your Sheet ID here (the long string from the Sheet URL)
+// const SHEET_ID = 'YOUR_GOOGLE_SHEET_ID_HERE';
+
 const SHEET_ID = '1IlVg7ZPvx72_ts8ww7WiVb75stoX1YapMsy4ar4uciY';
 
+const SHEET_BASE = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=`;
+
+// ── WhatsApp ──────────────────────────────────────────────────────
+// Format: 880 + number without leading 0
+// Example: 01711234567 → 8801711234567
+const WA_NUMBER = '8801867780753';
+const WA_GREETING = encodeURIComponent('আসসালামু আলাইকুম, আমি ওয়েবসাইট থেকে যোগাযোগ করছি।');
+
+// ── Formspree ─────────────────────────────────────────────────────
+// Sign up free at https://formspree.io → create form → copy ID
+const FORMSPREE_ID = 'mlgwojpq';
+
+// ─────────────────────────────────────────────────────────────────
 export const CONFIG = {
 
-  // ── Google Sheets ──────────────────────────────────────────────
   sheets: {
-    // Set enabled: true AFTER you publish each tab to web
-    news: {
-      enabled: false,
-      url: `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=news`,
-    },
-    gallery: {
-      enabled: false,
-      url: `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=gallery`,
-    },
-    videos: {
-      enabled: false,
-      url: `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=videos`,
-    },
-    voter: {
-      enabled: false,
-      url: `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=voters`,
-    },
+    news:    { enabled: false, url: SHEET_BASE + 'news' },
+    gallery: { enabled: false, url: SHEET_BASE + 'gallery' },
+    videos:  { enabled: false, url: SHEET_BASE + 'videos' },
+    voter:   { enabled: false, url: SHEET_BASE + 'voters' },
   },
 
-  // ── Formspree (Contact Form → Email) ──────────────────────────
-  // Get your ID from https://formspree.io (free signup)
   formspree: {
-    id: 'mlgwojpq', // e.g. 'xpzvwkrg'
-    get url() { return `https://formspree.io/f/${this.id}`; },
+    id:  FORMSPREE_ID,
+    url: `https://formspree.io/f/${FORMSPREE_ID}`,
   },
 
-  // ── WhatsApp ───────────────────────────────────────────────────
   whatsapp: {
-    number: '8801867780753', // Format: 8801711234567
-    get link() { return `https://wa.me/${this.number}`; },
-    get messageLink() {
-      const msg = encodeURIComponent('আসসালামু আলাইকুম, আমি ওয়েবসাইট থেকে যোগাযোগ করছি।');
-      return `https://wa.me/${this.number}?text=${msg}`;
-    },
+    number:      WA_NUMBER,
+    link:        `https://wa.me/${WA_NUMBER}`,
+    messageLink: `https://wa.me/${WA_NUMBER}?text=${WA_GREETING}`,
   },
 
-  // ── Site Meta ──────────────────────────────────────────────────
   site: {
-    name: 'শাহজাহান চৌধুরী',
-    title: 'আলহাজ্ব শাহজাহান চৌধুরী | সংসদ সদস্য কক্সবাজার-৪',
+    name:        'শাহজাহান চৌধুরী',
+    title:       'আলহাজ্ব শাহজাহান চৌধুরী | সংসদ সদস্য কক্সবাজার-৪',
     description: 'কক্সবাজার-৪ (উখিয়া-টেকনাফ) আসনের জাতীয় সংসদ সদস্য',
-    url: 'https://shahjahanmp.com', // update after domain purchase
+    url:         'https://shahjahanmp.com',
   },
 };
