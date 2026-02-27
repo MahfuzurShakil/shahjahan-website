@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 
 const CACHE_TTL = 5 * 60 * 1000;
 const cache = new Map();
@@ -29,7 +29,6 @@ function parseCSV(text) {
 
     const obj = {};
     headers.forEach((h, i) => {
-      // Guard: ensure value is always a string before calling replace
       const raw = values[i];
       obj[h] = (raw != null ? String(raw) : '').replace(/^"|"$/g, '').trim();
     });
@@ -38,21 +37,22 @@ function parseCSV(text) {
 }
 
 export function useSheetData(url, fallback = []) {
-  // Never pass null/undefined to cache.get
-  const [data, setData] = useState(fallback);
-  const [loading, setLoading] = useState(!!url); // only loading if url exists
+  const fallbackRef = useRef(fallback);
+
+  const [data, setData] = useState(() => fallbackRef.current);
+  const [loading, setLoading] = useState(!!url);
   const [error, setError] = useState(null);
   const [source, setSource] = useState('local');
 
   const fetchData = useCallback(async () => {
-    // No URL = sheets disabled, use fallback immediately
     if (!url) {
-      setData(fallback);
+      setData(fallbackRef.current);
       setLoading(false);
       setSource('local');
       return;
     }
 
+    // Check cache first
     const cached = cache.get(url);
     if (cached && Date.now() - cached.ts < CACHE_TTL) {
       setData(cached.data);
@@ -61,24 +61,53 @@ export function useSheetData(url, fallback = []) {
       return;
     }
 
+    setLoading(true);
+    setError(null);
+
     try {
-      const res = await fetch(url, { cache: 'no-store' });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const res = await fetch(url);
+
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status}`);
+      }
+
       const text = await res.text();
+
+      // Google redirects to login page (HTML) when sheet is not public
+      if (text.trim().startsWith('<') || text.includes('accounts.google.com')) {
+        throw new Error(
+          'SHEET_NOT_PUBLIC: Google Sheet is not publicly accessible. ' +
+          'Go to Google Sheets → File → Share → Publish to web → Publish.'
+        );
+      }
+
       const parsed = parseCSV(text);
+
+      if (parsed.length === 0) {
+        throw new Error('Sheet has no data rows. Check column headers match exactly.');
+      }
+
+      console.log(`[useSheetData] ✅ Loaded ${parsed.length} rows from sheet:`, url.split('sheet=')[1]);
       cache.set(url, { data: parsed, ts: Date.now() });
       setData(parsed);
       setSource('sheet');
-      setError(null);
     } catch (err) {
-      console.warn('[useSheetData] failed, using fallback:', err.message);
+      const isPublicError = err.message.includes('SHEET_NOT_PUBLIC') || err.message.includes('Failed to fetch');
+      if (isPublicError) {
+        console.error(
+          '[useSheetData] ❌ Sheet access blocked.\n' +
+          '👉 Fix: Open your Google Sheet → File → Share → Publish to web → Select sheet → Publish\n' +
+          'URL attempted:', url
+        );
+      } else {
+        console.error('[useSheetData] ❌ Error:', err.message);
+      }
       setError(err.message);
-      setData(fallback);
+      setData(fallbackRef.current);
       setSource('local');
     } finally {
       setLoading(false);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url]);
 
   useEffect(() => {

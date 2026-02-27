@@ -9,6 +9,16 @@
  * Tab: "voters"   → nid | name | father | village | center | serial
  */
 
+import bannerImage from '../assets/Banner.jpeg';
+import bannerImage2 from '../assets/Banner2.jpeg';
+
+// ── Inline SVG placeholder (no external dependency, works everywhere) ──────
+const svg = (bg, text, label) =>
+  `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400'%3E%3Crect fill='%23${bg}' width='600' height='400'/%3E%3Ctext fill='%23${text}' font-family='sans-serif' font-size='20' x='50%25' y='50%25' text-anchor='middle' dy='.3em'%3E${encodeURIComponent(label)}%3C/text%3E%3C/svg%3E`;
+
+const svgGallery = (bg, text, label) =>
+  `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='450'%3E%3Crect fill='%23${bg}' width='600' height='450'/%3E%3Ctext fill='%23${text}' font-family='sans-serif' font-size='20' x='50%25' y='50%25' text-anchor='middle' dy='.3em'%3E${encodeURIComponent(label)}%3C/text%3E%3C/svg%3E`;
+
 export const MP = {
   name: 'আলহাজ্ব শাহজাহান চৌধুরী',
   nameEn: 'Alhaj Shahjahan Chowdhury',
@@ -17,8 +27,8 @@ export const MP = {
   constituencyNo: '২৯৭',
   party: 'বাংলাদেশ জাতীয়তাবাদী দল (বিএনপি)',
   partyEn: 'BNP',
-  photo: 'https://via.placeholder.com/600x750/0d3b2e/c9a84c?text=শাহজাহান+চৌধুরী',
-  photoFormal: 'https://via.placeholder.com/400x500/1a5c45/e8c97a?text=MP+Photo',
+  photo: bannerImage,
+  photoFormal: bannerImage2,
   born: '১৯৫৫',
   education: 'এম.এ, চট্টগ্রাম বিশ্ববিদ্যালয়',
   phone: '+880 1XXX-XXXXXX',
@@ -44,26 +54,25 @@ export const TIMELINE = [
 ];
 
 export const NEWS = [
-  { id: '1', title: 'উখিয়ায় নতুন হাসপাতাল নির্মাণের ভিত্তিপ্রস্তর স্থাপন', excerpt: 'উখিয়া উপজেলায় একটি আধুনিক ৫০ শয্যার হাসপাতাল নির্মাণের জন্য ভিত্তিপ্রস্তর স্থাপন করলেন মাননীয় সংসদ সদস্য।', date: '১৫ ফেব্রুয়ারি ২০২৫', category: 'উন্নয়ন', image: 'https://via.placeholder.com/600x400/1a5c45/ffffff?text=হাসপাতাল', featured: 'TRUE' },
-  { id: '2', title: 'টেকনাফে শতাধিক মৎস্যজীবীকে আর্থিক সহায়তা প্রদান', excerpt: 'টেকনাফ উপকূলীয় এলাকার ক্ষতিগ্রস্ত মৎস্যজীবী পরিবারদের মধ্যে নগদ আর্থিক সহায়তা বিতরণ করা হয়েছে।', date: '০৮ ফেব্রুয়ারি ২০২৫', category: 'সামাজিক', image: 'https://via.placeholder.com/600x400/2d8a5e/ffffff?text=সহায়তা', featured: 'FALSE' },
-  { id: '3', title: 'উখিয়া-টেকনাফ সড়ক চার লেনে উন্নীত করার দাবি সংসদে', excerpt: 'জাতীয় সংসদে উখিয়া-টেকনাফ মহাসড়ক চার লেনে উন্নীত করার জন্য জোরালো দাবি জানান মাননীয় সংসদ সদস্য।', date: '০১ ফেব্রুয়ারি ২০২৫', category: 'সংসদ', image: 'https://via.placeholder.com/600x400/0d3b2e/ffffff?text=সড়ক', featured: 'FALSE' },
-  { id: '4', title: 'শিক্ষা বৃত্তি পেলেন ৫০০ মেধাবী শিক্ষার্থী', excerpt: 'উখিয়া ও টেকনাফ এলাকার ৫০০ জন মেধাবী শিক্ষার্থীকে বার্ষিক বৃত্তি প্রদান করা হয়।', date: '২৫ জানুয়ারি ২০২৫', category: 'শিক্ষা', image: 'https://via.placeholder.com/600x400/c9a84c/ffffff?text=বৃত্তি', featured: 'FALSE' },
+  { id: '1', title: 'উখিয়ায় নতুন হাসপাতাল নির্মাণের ভিত্তিপ্রস্তর স্থাপন', excerpt: 'উখিয়া উপজেলায় একটি আধুনিক ৫০ শয্যার হাসপাতাল নির্মাণের জন্য ভিত্তিপ্রস্তর স্থাপন করলেন মাননীয় সংসদ সদস্য।', date: '১৫ ফেব্রুয়ারি ২০২৫', category: 'উন্নয়ন', image: svg('1a5c45', 'ffffff', 'হাসপাতাল'), featured: 'TRUE' },
+  { id: '2', title: 'টেকনাফে শতাধিক মৎস্যজীবীকে আর্থিক সহায়তা প্রদান', excerpt: 'টেকনাফ উপকূলীয় এলাকার ক্ষতিগ্রস্ত মৎস্যজীবী পরিবারদের মধ্যে নগদ আর্থিক সহায়তা বিতরণ করা হয়েছে।', date: '০৮ ফেব্রুয়ারি ২০২৫', category: 'সামাজিক', image: svg('2d8a5e', 'ffffff', 'সহায়তা'), featured: 'FALSE' },
+  { id: '3', title: 'উখিয়া-টেকনাফ সড়ক চার লেনে উন্নীত করার দাবি সংসদে', excerpt: 'জাতীয় সংসদে উখিয়া-টেকনাফ মহাসড়ক চার লেনে উন্নীত করার জন্য জোরালো দাবি জানান মাননীয় সংসদ সদস্য।', date: '০১ ফেব্রুয়ারি ২০২৫', category: 'সংসদ', image: svg('0d3b2e', 'ffffff', 'সড়ক'), featured: 'FALSE' },
+  { id: '4', title: 'শিক্ষা বৃত্তি পেলেন ৫০০ মেধাবী শিক্ষার্থী', excerpt: 'উখিয়া ও টেকনাফ এলাকার ৫০০ জন মেধাবী শিক্ষার্থীকে বার্ষিক বৃত্তি প্রদান করা হয়।', date: '২৫ জানুয়ারি ২০২৫', category: 'শিক্ষা', image: svg('c9a84c', 'ffffff', 'বৃত্তি'), featured: 'FALSE' },
 ];
 
 export const GALLERY = [
-  { id: '1', url: 'https://via.placeholder.com/600x450/0d3b2e/c9a84c?text=সংসদ+অধিবেশন', caption: 'জাতীয় সংসদ অধিবেশনে বক্তৃতা', category: 'সংসদ', featured: 'FALSE' },
-  { id: '2', url: 'https://via.placeholder.com/600x450/1a5c45/ffffff?text=উন্নয়ন+কাজ', caption: 'উখিয়ায় রাস্তা নির্মাণ উদ্বোধন', category: 'উন্নয়ন', featured: 'FALSE' },
-  { id: '3', url: 'https://via.placeholder.com/600x450/2d8a5e/ffffff?text=জনসভা', caption: 'টেকনাফে বিশাল জনসভা', category: 'রাজনীতি', featured: 'FALSE' },
-  { id: '4', url: 'https://via.placeholder.com/600x450/c9a84c/0d3b2e?text=ত্রাণ+বিতরণ', caption: 'দুর্যোগ ত্রাণ বিতরণ কার্যক্রম', category: 'সামাজিক', featured: 'FALSE' },
-  { id: '5', url: 'https://via.placeholder.com/600x450/0d3b2e/e8c97a?text=পুরস্কার', caption: 'পুরস্কার গ্রহণ', category: 'সংসদ', featured: 'FALSE' },
-  { id: '6', url: 'https://via.placeholder.com/600x450/1a5c45/c9a84c?text=বৃত্তি+বিতরণ', caption: 'মেধাবী শিক্ষার্থীদের বৃত্তি প্রদান', category: 'শিক্ষা', featured: 'FALSE' },
-  { id: '7', url: 'https://via.placeholder.com/600x450/2d8a5e/c9a84c?text=স্বাস্থ্য+শিবির', caption: 'বিনামূল্যে স্বাস্থ্য শিবির', category: 'স্বাস্থ্য', featured: 'FALSE' },
-  { id: '8', url: 'https://via.placeholder.com/600x450/c9a84c/1a5c45?text=নির্বাচন', caption: 'নির্বাচনী প্রচারণা সভা', category: 'রাজনীতি', featured: 'FALSE' },
-  { id: '9', url: 'https://via.placeholder.com/600x450/0d3b2e/ffffff?text=সেতু+উদ্বোধন', caption: 'নতুন সেতু উদ্বোধন', category: 'উন্নয়ন', featured: 'FALSE' },
+  { id: '1', url: svgGallery('0d3b2e', 'c9a84c', 'সংসদ অধিবেশন'), caption: 'জাতীয় সংসদ অধিবেশনে বক্তৃতা', category: 'সংসদ', featured: 'FALSE' },
+  { id: '2', url: svgGallery('1a5c45', 'ffffff', 'উন্নয়ন কাজ'), caption: 'উখিয়ায় রাস্তা নির্মাণ উদ্বোধন', category: 'উন্নয়ন', featured: 'FALSE' },
+  { id: '3', url: svgGallery('2d8a5e', 'ffffff', 'জনসভা'), caption: 'টেকনাফে বিশাল জনসভা', category: 'রাজনীতি', featured: 'FALSE' },
+  { id: '4', url: svgGallery('c9a84c', '0d3b2e', 'ত্রাণ বিতরণ'), caption: 'দুর্যোগ ত্রাণ বিতরণ কার্যক্রম', category: 'সামাজিক', featured: 'FALSE' },
+  { id: '5', url: svgGallery('0d3b2e', 'e8c97a', 'পুরস্কার'), caption: 'পুরস্কার গ্রহণ', category: 'সংসদ', featured: 'FALSE' },
+  { id: '6', url: svgGallery('1a5c45', 'c9a84c', 'বৃত্তি বিতরণ'), caption: 'মেধাবী শিক্ষার্থীদের বৃত্তি প্রদান', category: 'শিক্ষা', featured: 'FALSE' },
+  { id: '7', url: svgGallery('2d8a5e', 'c9a84c', 'স্বাস্থ্য শিবির'), caption: 'বিনামূল্যে স্বাস্থ্য শিবির', category: 'স্বাস্থ্য', featured: 'FALSE' },
+  { id: '8', url: svgGallery('c9a84c', '1a5c45', 'নির্বাচন'), caption: 'নির্বাচনী প্রচারণা সভা', category: 'রাজনীতি', featured: 'FALSE' },
+  { id: '9', url: svgGallery('0d3b2e', 'ffffff', 'সেতু উদ্বোধন'), caption: 'নতুন সেতু উদ্বোধন', category: 'উন্নয়ন', featured: 'FALSE' },
 ];
 
 // youtubeId = the code after ?v= in YouTube URL
-// e.g. https://youtube.com/watch?v=ABC123xyz → youtubeId: 'ABC123xyz'
 export const VIDEOS = [
   { id: '1', title: 'সংসদে গুরুত্বপূর্ণ বক্তৃতা', youtubeId: 'dQw4w9WgXcQ', date: '১৫ জানুয়ারি ২০২৫', description: 'জাতীয় সংসদে উখিয়া-টেকনাফ এলাকার উন্নয়ন বিষয়ে গুরুত্বপূর্ণ বক্তৃতা।', category: 'সংসদ' },
   { id: '2', title: 'উখিয়ায় হাসপাতাল ভিত্তিপ্রস্তর অনুষ্ঠান', youtubeId: 'dQw4w9WgXcQ', date: '১৫ ফেব্রুয়ারি ২০২৫', description: 'উখিয়া উপজেলায় নতুন হাসপাতালের ভিত্তিপ্রস্তর স্থাপন অনুষ্ঠান।', category: 'উন্নয়ন' },

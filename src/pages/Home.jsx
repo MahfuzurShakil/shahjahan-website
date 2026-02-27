@@ -133,7 +133,7 @@ export default function Home() {
               onError={e => { e.target.src = 'https://via.placeholder.com/600x750/1a5c45/c9a84c?text=MP'; }}
             />
             <div className="hero-photo-badge">
-              <span>৪ বার</span>
+              <span>৫ বার</span>
               <span>নির্বাচিত</span>
             </div>
           </div>
@@ -240,7 +240,7 @@ export default function Home() {
               <article key={item.id} className="news-card card" style={{ animationDelay: `${i * 0.12}s` }}>
                 <div className="news-img-wrap">
                   <img src={item.image} alt={item.title}
-                    onError={e => { e.target.src = 'https://via.placeholder.com/600x400/1a5c45/ffffff?text=News'; }}
+                    onError={e => { e.target.src = 'https://res.cloudinary.com/dpvqcgvnr/image/upload/v1772185949/WhatsApp_Image_2026-02-27_at_11.29.51_AM_rm6wpv.jpg'; }}
                   />
                   <span className="news-category-badge">{item.category}</span>
                 </div>
