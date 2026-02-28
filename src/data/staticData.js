@@ -20,7 +20,7 @@ const svgGallery = (bg, text, label) =>
   `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='450'%3E%3Crect fill='%23${bg}' width='600' height='450'/%3E%3Ctext fill='%23${text}' font-family='sans-serif' font-size='20' x='50%25' y='50%25' text-anchor='middle' dy='.3em'%3E${encodeURIComponent(label)}%3C/text%3E%3C/svg%3E`;
 
 export const MP = {
-  name: 'আলহাজ্ব শাহজাহান চৌধুরী',
+  name: 'শাহজাহান চৌধুরী',
   nameEn: 'Alhaj Shahjahan Chowdhury',
   title: 'জাতীয় সংসদ সদস্য',
   constituency: 'কক্সবাজার-৪ (উখিয়া-টেকনাফ)',

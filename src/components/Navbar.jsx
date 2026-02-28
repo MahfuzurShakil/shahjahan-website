@@ -15,6 +15,61 @@ const NAV_LINKS = [
   { to: '/contact', label: 'যোগাযোগ' },
 ];
 
+// Rotating slogans for the top strip
+const TOP_SLOGANS = [
+  { icon: '🇧🇩', text: 'বাংলাদেশ জিন্দাবাদ  |  কক্সবাজার-৪ এর উন্নয়নে প্রতিশ্রুতিবদ্ধ' },
+  { icon: '🌿', text: 'জনগণের সেবাই আমার ধর্ম  |  আলহাজ্ব শাহজাহান চৌধুরী, সংসদ সদস্য' },
+  { icon: '✊', text: '"জনগণই আমার শক্তি"  —  শহীদ রাষ্ট্রপতি জিয়াউর রহমান' },
+  { icon: '📞', text: 'যোগাযোগ: ০১XXX-XXXXXX  |  কার্যালয়: সোম–শুক্র, সকাল ৯টা – বিকাল ৫টা' },
+];
+
+function TopStrip() {
+  const [idx, setIdx] = useState(0);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Fade out → switch → fade in
+      setVisible(false);
+      setTimeout(() => {
+        setIdx(i => (i + 1) % TOP_SLOGANS.length);
+        setVisible(true);
+      }, 350);
+    }, 3500);
+    return () => clearInterval(interval);
+  }, []);
+
+  const slogan = TOP_SLOGANS[idx];
+
+  return (
+    <div className="nav-topstrip">
+      <div className="container nav-topstrip-inner">
+        {/* Left: rotating slogan */}
+        <div className={`topstrip-slogan ${visible ? 'topstrip-slogan--visible' : ''}`}>
+          <span className="topstrip-icon">{slogan.icon}</span>
+          <span className="topstrip-text">{slogan.text}</span>
+        </div>
+
+        {/* Right: static contact / dots indicator */}
+        <div className="topstrip-right">
+          <div className="topstrip-dots">
+            {TOP_SLOGANS.map((_, i) => (
+              <button
+                key={i}
+                className={`topstrip-dot ${i === idx ? 'active' : ''}`}
+                onClick={() => { setIdx(i); setVisible(true); }}
+                aria-label={`slogan ${i + 1}`}
+              />
+            ))}
+          </div>
+          <span className="topstrip-separator">|</span>
+          <span className="topstrip-flag">🇧🇩 কক্সবাজার-৪</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -38,13 +93,7 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Top strip */}
-      <div className="nav-topstrip">
-        <div className="container nav-topstrip-inner">
-          <span>বাংলাদেশ জাতীয় সংসদ | কক্সবাজার-৪</span>
-          <span>📞 যোগাযোগ: ০১XXX-XXXXXX</span>
-        </div>
-      </div>
+      <TopStrip />
 
       <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
         <div className="container navbar-inner">
@@ -95,6 +144,12 @@ export default function Navbar() {
             <div className="logo-subtitle">সংসদ সদস্য</div>
           </div>
         </div>
+
+        {/* BNP slogan in drawer */}
+        <div className="mobile-drawer-slogan">
+          🇧🇩 বাংলাদেশ জিন্দাবাদ
+        </div>
+
         <ul className="mobile-nav-links">
           {NAV_LINKS.map(link => (
             <li key={link.to}>

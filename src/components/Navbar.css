@@ -1,18 +1,98 @@
+/* ═══════════════════════════════════════════════════
+   TOP STRIP — Rotating patriotic slogans
+═══════════════════════════════════════════════════ */
 .nav-topstrip {
   background: var(--forest);
-  color: rgba(255,255,255,0.75);
+  border-bottom: 1px solid rgba(201,168,76,0.2);
   font-size: 0.78rem;
-  padding: 0.4rem 0;
+  padding: 0.42rem 0;
   position: relative;
   z-index: 1001;
+  overflow: hidden;
 }
 
 .nav-topstrip-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
 }
 
+/* Rotating slogan */
+.topstrip-slogan {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  min-width: 0;
+  flex: 1;
+}
+
+.topstrip-slogan--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.topstrip-icon {
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.topstrip-text {
+  color: rgba(255,255,255,0.78);
+  font-family: var(--font-bangla);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Right side */
+.topstrip-right {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+.topstrip-dots {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.topstrip-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(201,168,76,0.3);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.topstrip-dot.active {
+  background: var(--gold);
+  transform: scale(1.3);
+}
+
+.topstrip-separator {
+  color: rgba(255,255,255,0.2);
+  font-size: 0.7rem;
+}
+
+.topstrip-flag {
+  color: rgba(201,168,76,0.75);
+  font-family: var(--font-bangla);
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════════════
+   NAVBAR
+═══════════════════════════════════════════════════ */
 .navbar {
   position: sticky;
   top: 0;
@@ -146,7 +226,7 @@
 .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
-/* Mobile drawer */
+/* ── Mobile drawer ─────────────────────────────────── */
 .mobile-drawer {
   position: fixed;
   top: 0;
@@ -175,6 +255,19 @@
 
 .mobile-drawer-header .logo-name { color: var(--cream); font-size: 0.9rem; }
 .mobile-drawer-header .logo-subtitle { color: var(--gold-light); font-size: 0.7rem; }
+
+/* Slogan in mobile drawer */
+.mobile-drawer-slogan {
+  padding: 0.6rem 1.5rem;
+  background: rgba(13,59,46,0.04);
+  border-bottom: 1px solid rgba(201,168,76,0.12);
+  font-family: var(--font-bangla);
+  font-size: 0.8rem;
+  color: var(--emerald);
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
 
 .mobile-nav-links {
   list-style: none;
@@ -210,9 +303,15 @@
   backdrop-filter: blur(2px);
 }
 
-/* Responsive */
+/* ── Responsive ────────────────────────────────────── */
 @media (max-width: 1024px) {
   .navbar-links { display: none; }
   .hamburger { display: flex; }
-  .nav-topstrip-inner span:last-child { display: none; }
+  .topstrip-right { display: none; }
+}
+
+@media (max-width: 480px) {
+  .topstrip-text {
+    font-size: 0.72rem;
+  }
 }
