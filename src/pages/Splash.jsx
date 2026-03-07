@@ -50,7 +50,7 @@ export default function Splash({ onEnter }) {
 
   // Auto-skip after 70 seconds
   useEffect(() => {
-    timerRef.current = setTimeout(() => handleEnter(), 70000);
+    timerRef.current = setTimeout(() => handleEnter(), 7000);
     return () => clearTimeout(timerRef.current);
   }, []);
 
@@ -120,7 +120,7 @@ export default function Splash({ onEnter }) {
         <div className="splash-name-block">
           <h1 className="splash-name">{MP.name}</h1>
           <div className="splash-gold-line" />
-          <p className="splash-title">জাতীয় সংসদ সদস্য</p>
+          <p className="splash-title">মাননীয় সংসদ সদস্য</p>
           <p className="splash-constituency">কক্সবাজার-৪ (উখিয়া-টেকনাফ) • নির্বাচনী এলাকা নং ২৯৭</p>
         </div>
 
