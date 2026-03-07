@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { MP } from '../data/staticData';
+import dhanerShishLogo from '../assets/DhanerShish.png';
 import './Splash.css';
 
 const SLOGANS = [
@@ -11,47 +12,6 @@ const SLOGANS = [
 // Animated particle that floats up like embers
 function Particle({ style }) {
   return <div className="splash-particle" style={style} />;
-}
-
-// Paddy sheaf (ধানের শীষ) SVG — BNP's electoral symbol
-function DhanerShish({ className = '', size = 120 }) {
-  return (
-    <svg
-      className={className}
-      width={size}
-      height={size}
-      viewBox="0 0 120 120"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      {/* Stem */}
-      <path d="M60 110 Q58 80 55 50 Q52 30 60 10" stroke="#c9a84c" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
-      <path d="M60 110 Q62 80 65 50 Q68 30 60 10" stroke="#c9a84c" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.5"/>
-
-      {/* Paddy grains on left */}
-      {[
-        [52, 65], [46, 52], [41, 40], [49, 57], [44, 46],
-      ].map(([x, y], i) => (
-        <ellipse key={`l${i}`} cx={x} cy={y} rx="5" ry="9" fill="#c9a84c" opacity={0.8 - i * 0.1}
-          transform={`rotate(${-20 - i * 5} ${x} ${y})`} />
-      ))}
-
-      {/* Paddy grains on right */}
-      {[
-        [68, 65], [74, 52], [79, 40], [71, 57], [76, 46],
-      ].map(([x, y], i) => (
-        <ellipse key={`r${i}`} cx={x} cy={y} rx="5" ry="9" fill="#c9a84c" opacity={0.8 - i * 0.1}
-          transform={`rotate(${20 + i * 5} ${x} ${y})`} />
-      ))}
-
-      {/* Top grain */}
-      <ellipse cx="60" cy="14" rx="4" ry="8" fill="#e8c97a" />
-
-      {/* Subtle glow circle */}
-      <circle cx="60" cy="60" r="50" stroke="#c9a84c" strokeWidth="0.5" opacity="0.15"/>
-      <circle cx="60" cy="60" r="56" stroke="#c9a84c" strokeWidth="0.3" opacity="0.08"/>
-    </svg>
-  );
 }
 
 export default function Splash({ onEnter }) {
@@ -88,7 +48,7 @@ export default function Splash({ onEnter }) {
     return () => clearInterval(t);
   }, []);
 
-  // Auto-skip after 7 seconds, update phase to trigger exit animation, then call onEnter after animation duration
+  // Auto-skip after 70 seconds
   useEffect(() => {
     timerRef.current = setTimeout(() => handleEnter(), 70000);
     return () => clearTimeout(timerRef.current);
@@ -124,9 +84,13 @@ export default function Splash({ onEnter }) {
       {/* ── Main content ── */}
       <div className="splash-content">
 
-        {/* BNP symbol top */}
+        {/* BNP Dhaner Shish real logo */}
         <div className="splash-symbol">
-          <DhanerShish className="splash-sheaf" size={100} />
+          <img
+            src={dhanerShishLogo}
+            alt="BNP ধানের শীষ"
+            className="splash-sheaf"
+          />
           <div className="splash-sheaf-glow" />
         </div>
 
@@ -169,7 +133,7 @@ export default function Splash({ onEnter }) {
           <span className="splash-slogan-quote">"</span>
         </div>
 
-        {/* Enter button */}
+        {/* Enter button — subtle, not over-highlighted */}
         <button className="splash-enter-btn" onClick={e => { e.stopPropagation(); handleEnter(); }}>
           <span className="splash-enter-text">ওয়েবসাইটে প্রবেশ করুন</span>
           <span className="splash-enter-arrow">→</span>

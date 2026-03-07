@@ -13,14 +13,11 @@
   justify-content: center;
   cursor: pointer;
   overflow: hidden;
-  /* Phase: intro */
   opacity: 0;
   transition: opacity 0.7s ease;
 }
 
-.splash--ready {
-  opacity: 1;
-}
+.splash--ready  { opacity: 1; }
 
 .splash--leaving {
   opacity: 0;
@@ -29,26 +26,20 @@
   transition: opacity 0.65s ease, transform 0.65s ease;
 }
 
-/* ── Background ───────────────────────────────────── */
+/* ── Background ─────────────────────────────────── */
 .splash-bg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    165deg,
-    #021a10 0%,
-    #0d3b2e 35%,
-    #0a2e22 60%,
-    #061a0f 100%
-  );
+  background: linear-gradient(165deg, #021a10 0%, #0d3b2e 35%, #0a2e22 60%, #061a0f 100%);
 }
 
 .splash-radial {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 70% 60% at 50% 40%, rgba(26, 92, 69, 0.55) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201, 168, 76, 0.07) 0%, transparent 60%),
-    radial-gradient(ellipse 30% 30% at 80% 15%, rgba(201, 168, 76, 0.06) 0%, transparent 50%);
+    radial-gradient(ellipse 70% 60% at 50% 40%, rgba(26,92,69,0.55) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,168,76,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 30% 30% at 80% 15%, rgba(201,168,76,0.06) 0%, transparent 50%);
 }
 
 .splash-grid {
@@ -61,7 +52,7 @@
   background-size: 60px 60px;
 }
 
-/* ── Particles ────────────────────────────────────── */
+/* ── Particles ──────────────────────────────────── */
 .splash-particles {
   position: absolute;
   inset: 0;
@@ -84,7 +75,7 @@
   100% { transform: translateY(-110vh) scale(0.3); opacity: 0; }
 }
 
-/* ── Main content ─────────────────────────────────── */
+/* ── Main content ───────────────────────────────── */
 .splash-content {
   position: relative;
   z-index: 2;
@@ -92,21 +83,24 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 1.5rem 1.25rem 5rem;
+  padding: 2rem 1.5rem 5.5rem;
   gap: 0;
   max-width: 560px;
   width: 100%;
 }
 
-/* BNP Dhaner Shish symbol */
+/* BNP Dhaner Shish logo */
 .splash-symbol {
   position: relative;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
   animation: splashFadeDown 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
 }
 
 .splash-sheaf {
-  filter: drop-shadow(0 0 16px rgba(201,168,76,0.5));
+  width: 110px;
+  height: 110px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 16px rgba(201,168,76,0.45));
   animation: splashFloatGently 5s ease-in-out infinite;
 }
 
@@ -125,7 +119,7 @@
 
 @keyframes splashPulseGlow {
   0%, 100% { opacity: 0.6; transform: scale(1); }
-  50%       { opacity: 1; transform: scale(1.12); }
+  50%       { opacity: 1;   transform: scale(1.12); }
 }
 
 /* Party label */
@@ -134,11 +128,11 @@
   align-items: center;
   gap: 0.6rem;
   font-family: var(--font-bangla);
-  font-size: 0.78rem;
+  font-size: 0.85rem;
   font-weight: 600;
   color: rgba(201,168,76,0.85);
   letter-spacing: 0.04em;
-  margin-bottom: 1.4rem;
+  margin-bottom: 1.5rem;
   animation: splashFadeDown 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.45s both;
 }
 
@@ -153,24 +147,22 @@
 /* Photo */
 .splash-photo-wrap {
   position: relative;
-  width: 160px;
-  height: 160px;
-  margin-bottom: 1.6rem;
+  width: 180px;
+  height: 180px;
+  margin-bottom: 1.75rem;
   animation: splashFadeUp 1s cubic-bezier(0.22, 1, 0.36, 1) 0.55s both;
 }
 
 .splash-photo {
-  width: 160px;
-  height: 160px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
   object-fit: cover;
   object-position: top center;
   position: relative;
   z-index: 3;
   border: 3px solid rgba(201,168,76,0.6);
-  box-shadow:
-    0 0 0 6px rgba(201,168,76,0.08),
-    0 20px 60px rgba(0,0,0,0.5);
+  box-shadow: 0 0 0 6px rgba(201,168,76,0.08), 0 20px 60px rgba(0,0,0,0.5);
 }
 
 .splash-photo-ring {
@@ -210,12 +202,12 @@
 /* Name block */
 .splash-name-block {
   animation: splashFadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.65s both;
-  margin-bottom: 1.4rem;
+  margin-bottom: 1.5rem;
 }
 
 .splash-name {
   font-family: var(--font-tiro);
-  font-size: clamp(1.7rem, 5vw, 2.6rem);
+  font-size: clamp(2rem, 6vw, 2.8rem);
   font-weight: 400;
   color: #f5e6c8;
   line-height: 1.25;
@@ -233,16 +225,16 @@
 
 .splash-title {
   font-family: var(--font-bangla);
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 600;
   color: var(--gold-light, #e8c97a);
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.35rem;
 }
 
 .splash-constituency {
   font-family: var(--font-bangla);
-  font-size: 0.78rem;
-  color: rgba(255,255,255,0.45);
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.5);
   letter-spacing: 0.02em;
 }
 
@@ -264,7 +256,7 @@
 
 .splash-slogan {
   font-family: var(--font-bangla);
-  font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+  font-size: clamp(1rem, 3vw, 1.2rem);
   font-weight: 600;
   color: rgba(255,255,255,0.75);
   animation: splashSloganIn 0.5s ease both;
@@ -275,59 +267,57 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Enter button */
+/* Enter button — subtle ghost style */
 .splash-enter-btn {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.9rem 2.4rem;
-  background: linear-gradient(135deg, #c9a84c, #e8c97a);
-  color: #0d3b2e;
+  padding: 0.85rem 2.4rem;
+  background: transparent;
+  color: rgba(201,168,76,0.85);
   font-family: var(--font-bangla);
-  font-weight: 800;
-  font-size: 1.05rem;
-  border: none;
+  font-weight: 600;
+  font-size: 1rem;
+  border: 1.5px solid rgba(201,168,76,0.45);
   border-radius: 50px;
   cursor: pointer;
   animation: splashFadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.9s both;
   transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow:
-    0 4px 20px rgba(201,168,76,0.35),
-    inset 0 1px 0 rgba(255,255,255,0.3);
   position: relative;
   overflow: hidden;
   margin-bottom: 1.2rem;
+  letter-spacing: 0.02em;
 }
 
 .splash-enter-btn::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+  background: rgba(201,168,76,0.08);
   opacity: 0;
   transition: opacity 0.28s;
 }
 
 .splash-enter-btn:hover {
-  transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 10px 32px rgba(201,168,76,0.5);
+  transform: translateY(-2px);
+  border-color: rgba(201,168,76,0.75);
+  color: rgba(201,168,76,1);
+  box-shadow: 0 6px 20px rgba(201,168,76,0.15);
 }
 
 .splash-enter-btn:hover::before { opacity: 1; }
-.splash-enter-btn:active { transform: translateY(-1px) scale(1.01); }
+.splash-enter-btn:active { transform: translateY(0px); }
 
 .splash-enter-text { position: relative; z-index: 1; }
 
 .splash-enter-arrow {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   position: relative;
   z-index: 1;
   transition: transform 0.2s ease;
 }
 
-.splash-enter-btn:hover .splash-enter-arrow {
-  transform: translateX(4px);
-}
+.splash-enter-btn:hover .splash-enter-arrow { transform: translateX(4px); }
 
 /* Skip / progress */
 .splash-skip {
@@ -361,12 +351,12 @@
 
 .splash-skip span {
   font-family: var(--font-bangla);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   color: rgba(255,255,255,0.28);
   letter-spacing: 0.03em;
 }
 
-/* ── Bottom banner ────────────────────────────────── */
+/* ── Bottom banner ──────────────────────────────── */
 .splash-bottom-band {
   position: absolute;
   bottom: 0;
@@ -377,12 +367,12 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  padding: 0.65rem 1rem;
+  padding: 0.75rem 1rem;
   background: rgba(0,0,0,0.35);
   border-top: 1px solid rgba(201,168,76,0.15);
   backdrop-filter: blur(4px);
   font-family: var(--font-bangla);
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   color: rgba(201,168,76,0.7);
   letter-spacing: 0.03em;
   animation: splashFadeUp 0.9s ease 1.1s both;
@@ -393,7 +383,7 @@
   color: rgba(201,168,76,0.4);
 }
 
-/* ── Shared keyframes ─────────────────────────────── */
+/* ── Shared keyframes ───────────────────────────── */
 @keyframes splashFadeUp {
   from { opacity: 0; transform: translateY(22px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -404,22 +394,48 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── Responsive ───────────────────────────────────── */
-@media (max-width: 480px) {
-  .splash-photo-wrap { width: 130px; height: 130px; }
-  .splash-photo { width: 130px; height: 130px; }
-  .splash-content { padding-bottom: 4.5rem; gap: 0; }
-  .splash-bottom-band { font-size: 0.68rem; gap: 0.6rem; }
-  .splash-enter-btn { padding: 0.85rem 2rem; font-size: 0.98rem; }
-  .splash-sheaf { width: 80px; height: 80px; }
+/* ══════════════════════════════════════════════════
+   RESPONSIVE — Mobile first (fills the screen)
+══════════════════════════════════════════════════ */
+
+/* Small phones (≤360px width) */
+@media (max-width: 360px) {
+  .splash-content { padding: 1.5rem 1rem 5rem; }
+  .splash-sheaf   { width: 88px; height: 88px; }
+  .splash-photo-wrap, .splash-photo { width: 150px; height: 150px; }
+  .splash-name    { font-size: 1.75rem; }
+  .splash-title   { font-size: 0.95rem; }
+  .splash-constituency { font-size: 0.76rem; }
+  .splash-enter-btn { padding: 0.8rem 2rem; font-size: 0.93rem; }
+  .splash-party-label { font-size: 0.78rem; }
+  .splash-bottom-band { font-size: 0.65rem; gap: 0.5rem; }
 }
 
-@media (max-height: 650px) {
-  .splash-symbol { margin-bottom: 0; }
-  .splash-sheaf { width: 64px; height: 64px; }
-  .splash-photo-wrap { width: 110px; height: 110px; margin-bottom: 1rem; }
-  .splash-photo { width: 110px; height: 110px; }
-  .splash-name-block { margin-bottom: 0.8rem; }
-  .splash-slogan-wrap { margin-bottom: 1.2rem; }
-  .splash-party-label { margin-bottom: 0.8rem; }
+/* Regular mobile (361px – 480px) — main target e.g. Pixel 7 */
+@media (min-width: 361px) and (max-width: 480px) {
+  .splash-content { padding: 2rem 1.25rem 5.5rem; }
+  .splash-sheaf   { width: 100px; height: 100px; }
+  .splash-photo-wrap, .splash-photo { width: 170px; height: 170px; }
+  .splash-name    { font-size: 2rem; }
+  .splash-title   { font-size: 1rem; }
+  .splash-constituency { font-size: 0.8rem; }
+  .splash-enter-btn { padding: 0.85rem 2.2rem; font-size: 0.97rem; }
+}
+
+/* Short screens (landscape mobile / small height) */
+@media (max-height: 700px) {
+  .splash-symbol   { margin-bottom: 0.3rem; }
+  .splash-sheaf    { width: 72px; height: 72px; }
+  .splash-photo-wrap, .splash-photo { width: 130px; height: 130px; margin-bottom: 1rem; }
+  .splash-name-block { margin-bottom: 1rem; }
+  .splash-slogan-wrap { margin-bottom: 1.4rem; }
+  .splash-party-label { margin-bottom: 1rem; }
+  .splash-name    { font-size: 1.7rem; }
+}
+
+@media (max-height: 600px) {
+  .splash-sheaf    { width: 60px; height: 60px; }
+  .splash-photo-wrap, .splash-photo { width: 110px; height: 110px; margin-bottom: 0.8rem; }
+  .splash-name    { font-size: 1.5rem; }
+  .splash-slogan-wrap { margin-bottom: 1rem; }
 }

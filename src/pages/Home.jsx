@@ -290,7 +290,7 @@ export default function Home() {
           </div>
           <div className={`news-grid ${newsInView ? 'visible' : ''}`}>
             {latestNews.map((item, i) => (
-              <article key={item.id||i} className="news-card card" style={{ animationDelay: `${i*0.12}s` }}>
+              <article key={`news-${item.id}-${i}`} className="news-card card" style={{ animationDelay: `${i*0.12}s` }}>
                 <div className="news-img-wrap">
                   <img src={item.image} alt={item.title}
                     onError={e => { e.target.onerror=null; e.target.closest('.news-img-wrap').style.display='none'; }} />
