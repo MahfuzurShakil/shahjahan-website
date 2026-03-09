@@ -22,6 +22,7 @@ export const CONFIG = {
     gallery: { enabled: true,  url: SHEET_BASE + 'gallery' },
     videos:  { enabled: true,  url: SHEET_BASE + 'videos' },
     voter:   { enabled: false, url: SHEET_BASE + 'voters' },
+    activities: { enabled: false,  url: SHEET_BASE + 'activities' }, 
   },
 
   formspree: {

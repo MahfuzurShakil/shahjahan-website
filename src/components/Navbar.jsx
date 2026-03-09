@@ -6,69 +6,14 @@ import './Navbar.css';
 const NAV_LINKS = [
   { to: '/', label: 'হোম' },
   { to: '/about', label: 'পরিচিতি' },
-  { to: '/activities', label: 'কার্যক্রম' },
+  { to: '/activities', label: 'রাজনৈতিক কার্যক্রম' },
   { to: '/social-work', label: 'সামাজিক কার্যক্রম' },
   { to: '/gallery', label: 'গ্যালারি' },
   { to: '/constituency', label: 'নির্বাচনী এলাকা' },
-  { to: '/voter-slip', label: 'ভোটার স্লিপ' },
+  //{ to: '/voter-slip', label: 'ভোটার স্লিপ' },
   { to: '/news', label: 'সংবাদ' },
   { to: '/contact', label: 'যোগাযোগ' },
 ];
-
-// Rotating slogans for the top strip
-const TOP_SLOGANS = [
-  { icon: '🇧🇩', text: 'বাংলাদেশ জিন্দাবাদ  |  কক্সবাজার-৪ এর উন্নয়নে প্রতিশ্রুতিবদ্ধ' },
-  { icon: '🌿', text: 'জনগণের সেবাই আমার ধর্ম  |  আলহাজ্ব শাহজাহান চৌধুরী, সংসদ সদস্য' },
-  { icon: '✊', text: '"জনগণই আমার শক্তি"  —  শহীদ রাষ্ট্রপতি জিয়াউর রহমান' },
-  { icon: '📞', text: 'যোগাযোগ: ০১XXX-XXXXXX  |  কার্যালয়: সোম–শুক্র, সকাল ৯টা – বিকাল ৫টা' },
-];
-
-function TopStrip() {
-  const [idx, setIdx] = useState(0);
-  const [visible, setVisible] = useState(true);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      // Fade out → switch → fade in
-      setVisible(false);
-      setTimeout(() => {
-        setIdx(i => (i + 1) % TOP_SLOGANS.length);
-        setVisible(true);
-      }, 350);
-    }, 3500);
-    return () => clearInterval(interval);
-  }, []);
-
-  const slogan = TOP_SLOGANS[idx];
-
-  return (
-    <div className="nav-topstrip">
-      <div className="container nav-topstrip-inner">
-        {/* Left: rotating slogan */}
-        <div className={`topstrip-slogan ${visible ? 'topstrip-slogan--visible' : ''}`}>
-          <span className="topstrip-icon">{slogan.icon}</span>
-          <span className="topstrip-text">{slogan.text}</span>
-        </div>
-
-        {/* Right: static contact / dots indicator */}
-        <div className="topstrip-right">
-          <div className="topstrip-dots">
-            {TOP_SLOGANS.map((_, i) => (
-              <button
-                key={i}
-                className={`topstrip-dot ${i === idx ? 'active' : ''}`}
-                onClick={() => { setIdx(i); setVisible(true); }}
-                aria-label={`slogan ${i + 1}`}
-              />
-            ))}
-          </div>
-          <span className="topstrip-separator">|</span>
-          <span className="topstrip-flag">🇧🇩 কক্সবাজার-৪</span>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -93,14 +38,18 @@ export default function Navbar() {
 
   return (
     <>
-      <TopStrip />
-
       <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
         <div className="container navbar-inner">
-          {/* Logo */}
+
+          {/* Logo — MP photo instead of initials box */}
           <Link to="/" className="navbar-logo">
             <div className="logo-emblem">
-              <span className="logo-initials">শ.চ</span>
+              <img
+                src={MP.photo}
+                alt={MP.name}
+                className="logo-photo"
+                onError={e => { e.target.style.display = 'none'; }}
+              />
             </div>
             <div className="logo-text">
               <span className="logo-name">{MP.name}</span>
@@ -137,7 +86,12 @@ export default function Navbar() {
       <div className={`mobile-drawer ${menuOpen ? 'open' : ''}`}>
         <div className="mobile-drawer-header">
           <div className="logo-emblem">
-            <span className="logo-initials">শ.চ</span>
+            <img
+              src={MP.photo}
+              alt={MP.name}
+              className="logo-photo"
+              onError={e => { e.target.style.display = 'none'; }}
+            />
           </div>
           <div>
             <div className="logo-name">{MP.name}</div>
@@ -145,9 +99,8 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* BNP slogan in drawer */}
         <div className="mobile-drawer-slogan">
-          🇧🇩 বাংলাদেশ জিন্দাবাদ
+          বাংলাদেশ জিন্দাবাদ
         </div>
 
         <ul className="mobile-nav-links">

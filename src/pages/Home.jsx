@@ -28,7 +28,7 @@ function DhanerShish({ size = 80, opacity = 1, className = '' }) {
   );
 }
 
-// ─── BNP Identity Band (replaces news ticker) ────────────────────
+// ─── BNP Identity Band ────────────────────────────────────────────
 function BnpBand() {
   return (
     <div className="bnp-band">
@@ -52,41 +52,6 @@ function BnpBand() {
         <div className="bnp-band-sep" />
         <div className="bnp-band-slogan">বাংলাদেশ জিন্দাবাদ</div>
       </div>
-    </div>
-  );
-}
-
-// ─── Stats — grouped by theme, with icon + context line ──────────
-const STAT_GROUPS = [
-  {
-    label: 'সংসদীয় অভিজ্ঞতা',
-    items: [
-      { icon: '🗳️', value: 5,   suffix: '',    label: 'বার নির্বাচিত সংসদ সদস্য', context: '১৯৮৯ · ১৯৯১ · ১৯৯৬ · ২০০১ · ২০২৪' },
-      { icon: '🏛️', value: 50,  suffix: '+',   label: 'বছরের রাজনৈতিক অভিজ্ঞতা',  context: '১৯৯১ সাল থেকে সক্রিয়' },
-      { icon: '📜', value: 85,  suffix: '+',   label: 'সংসদীয় বক্তৃতা প্রদান',    context: 'জাতীয় ও স্থানীয় ইস্যুতে' },
-    ],
-  },
-  {
-    label: 'উন্নয়নমূলক কার্যক্রম',
-    items: [
-      { icon: '🏗️', value: 250, suffix: '+',       label: 'উন্নয়ন প্রকল্প সম্পন্ন',   context: 'উখিয়া-টেকনাফ জুড়ে' },
-      { icon: '🛣️', value: 480, suffix: ' কি.মি.', label: 'সড়ক ও সেতু নির্মাণ',      context: '২৫+ নতুন সেতু সহ' },
-      { icon: '🎓', value: 500, suffix: '+',       label: 'শিক্ষাবৃত্তি প্রদান',      context: 'মেধাবী শিক্ষার্থীদের' },
-    ],
-  },
-];
-
-function StatCard({ item, delay }) {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
-  return (
-    <div ref={ref} className="stat-card" style={{ animationDelay: `${delay}s` }}>
-      <span className="stat-icon">{item.icon}</span>
-      <div className="stat-value">
-        {inView ? <CountUp end={Number(item.value)} duration={2.4} separator="," /> : '0'}
-        <span className="stat-suffix">{item.suffix}</span>
-      </div>
-      <div className="stat-label">{item.label}</div>
-      <div className="stat-context">{item.context}</div>
     </div>
   );
 }
@@ -122,6 +87,150 @@ function parseBnDate(str) {
   return 0;
 }
 
+// ─── অঙ্গীকার ও প্রতিশ্রুতি Data ────────────────────────────────
+const ANGIKARS = [
+  {
+    id: 4,
+    icon: '🎓',
+    title: 'শিক্ষা ও দক্ষ মানবসম্পদ তৈরি',
+    short: 'উখিয়া-টেকনাফের যুবসমাজকে আধুনিক কারিগরি প্রশিক্ষণ, ভাষা শিক্ষা ও ফ্রিল্যান্সিং দক্ষতায় গড়ে তুলে দেশে-বিদেশে কর্মসংস্থান সৃষ্টি করা।',
+    details: 'সরকারি-বেসরকারি অংশীদারিত্বে কারিগরি প্রশিক্ষণ কেন্দ্র স্থাপন, ইংরেজি ও অ্যারাবিক ভাষা শিক্ষা কার্যক্রম, ফ্রিল্যান্সিং ও আইটি প্রশিক্ষণ, মেধাবী শিক্ষার্থীদের বৃত্তি প্রদান এবং নারী ও প্রতিবন্ধীদের জন্য বিশেষ কর্মসূচি চালু করা হবে। প্রশিক্ষণপ্রাপ্তদের জন্য জাতীয় ও আন্তর্জাতিক চাকরির সুযোগ তৈরিতে সহায়তা করা হবে।',
+  },
+  {
+    id: 5,
+    icon: '🚫',
+    title: 'মাদকমুক্ত সুস্থ সমাজ গঠন',
+    short: 'ইয়াবা ও মাদকের ভয়াল ছোবল থেকে উখিয়া-টেকনাফের যুবসমাজকে রক্ষা করে সুস্থ, নিরাপদ ও নৈতিক সমাজ প্রতিষ্ঠা করা।',
+    details: 'ওয়ার্ড ও ইউনিয়নভিত্তিক মাদকবিরোধী নাগরিক কমিটি গঠন, আইনশৃঙ্খলা জোরদার, খেলাধুলা ও সৃজনশীল কার্যক্রমের বিস্তার, সামাজিক সংগঠন ও স্বেচ্ছাসেবীদের সম্পৃক্ত করা এবং মাদকাসক্তদের জন্য মানবিক চিকিৎসা ও পুনর্বাসন সহায়তা প্রদান করা হবে। সচেতনতামূলক প্রচারণার মাধ্যমে সমাজের প্রতিটি স্তরে ইতিবাচক পরিবর্তন আনা হবে।',
+  },
+  {
+    id: 6,
+    icon: '🌊',
+    title: 'নিরাপদ ও সুন্দর উখিয়া-টেকনাফ',
+    short: 'সড়ক দুর্ঘটনা, মানবপাচার, নারী-শিশু নির্যাতন রোধ এবং প্রাকৃতিক দুর্যোগ মোকাবিলায় সার্বিক নিরাপত্তা ব্যবস্থা গড়ে তোলা।',
+    details: 'সীমান্তবর্তী উখিয়া-টেকনাফে মানবপাচার রোধে কঠোর ব্যবস্থা, সড়ক নিরাপত্তা নিশ্চিতে আধুনিক সংকেত ব্যবস্থা, নারী ও শিশু নির্যাতন রোধে বিশেষ সেল গঠন, বন্যা ও ঘূর্ণিঝড় মোকাবিলায় আশ্রয়কেন্দ্র নির্মাণ এবং দুর্যোগ পরবর্তী ত্বরিত ক্ষতিপূরণ ও পুনর্বাসন নিশ্চিত করা হবে।',
+  },
+  
+  {
+    id: 1,
+    icon: '🐟',
+    title: 'জেলেদের মাছ ধরার অধিকার পুনঃপ্রতিষ্ঠা',
+    short: 'উখিয়া-টেকনাফের জেলে পরিবারগুলোর জীবিকা রক্ষায় সমুদ্রে মাছ ধরার উপর আরোপিত অন্যায় নিষেধাজ্ঞা প্রত্যাহার করে তাদের জীবিকার নিশ্চয়তা দেওয়া।',
+    details: 'উখিয়া-টেকনাফ উপকূলীয় এলাকার হাজার হাজার জেলে পরিবার সমুদ্রে মাছ ধরার উপর নির্ভরশীল। বিভিন্ন সময়ে আরোপিত অযৌক্তিক নিষেধাজ্ঞা এবং আমলাতান্ত্রিক জটিলতায় তারা জীবিকা হারাচ্ছেন। জেলেদের লাইসেন্স প্রক্রিয়া সহজ করা, গভীর সমুদ্রে মাছ ধরার সুযোগ তৈরি, আধুনিক নৌকা ও জাল সরবরাহে সহায়তা এবং মৎস্য প্রক্রিয়াকরণ কেন্দ্র স্থাপন করা আমার অঙ্গীকার।',
+  },
+  {
+    id: 2,
+    icon: '🛳️',
+    title: 'টেকনাফ স্থলবন্দর পুনরায় চালুকরণ',
+    short: 'টেকনাফ স্থলবন্দর বন্ধ থাকায় মিয়ানমারের সাথে বাণিজ্য স্থবির হয়ে পড়েছে। এটি পুনরায় চালু করে স্থানীয় ব্যবসায়ীদের ও অর্থনীতিকে সচল করা জরুরি।',
+    details: 'টেকনাফ স্থলবন্দর বাংলাদেশ-মিয়ানমার বাণিজ্যের একটি গুরুত্বপূর্ণ প্রবেশদ্বার। বন্দর বন্ধ থাকায় টেকনাফের শত শত ব্যবসায়ী ক্ষতিগ্রস্ত এবং হাজারো শ্রমিক বেকার হয়ে পড়েছেন। কূটনৈতিক উদ্যোগ ও আলোচনার মাধ্যমে দ্রুত বন্দর চালু, অবকাঠামো উন্নয়ন, কাস্টমস প্রক্রিয়া সহজীকরণ এবং দ্বিপাক্ষিক বাণিজ্য বৃদ্ধিতে সক্রিয় ভূমিকা রাখা আমার প্রধান লক্ষ্য।',
+  },
+  {
+    id: 3,
+    icon: '🏥',
+    title: 'স্বাস্থ্যসেবা ও আধুনিক হাসপাতাল',
+    short: 'উখিয়া-টেকনাফে আধুনিক হাসপাতাল নির্মাণ, বিশেষজ্ঞ চিকিৎসক নিয়োগ ও সাধারণ মানুষের জন্য সহজলভ্য স্বাস্থ্যসেবা নিশ্চিত করা।',
+    details: 'উখিয়া-টেকনাফের মানুষ উন্নত চিকিৎসার জন্য কক্সবাজার বা চট্টগ্রামে যেতে বাধ্য হন। স্থানীয়ভাবে ৫০-শয্যার আধুনিক হাসপাতাল, ডায়ালিসিস সেন্টার, মাতৃ ও শিশু স্বাস্থ্য কেন্দ্র স্থাপন, প্রত্যন্ত এলাকায় মোবাইল মেডিকেল ক্যাম্প পরিচালনা এবং বিনামূল্যে ওষুধ বিতরণ কর্মসূচি বাস্তবায়ন করা হবে।',
+  },
+  
+  {
+    id: 7,
+    icon: '⚡',
+    title: 'নবায়নযোগ্য জ্বালানি ও বিদ্যুৎ',
+    short: 'উখিয়া-টেকনাফের সমুদ্র বাতাস ও প্রখর সূর্যালোক ব্যবহার করে সৌর ও বায়ু বিদ্যুৎ প্রকল্পের মাধ্যমে বিদ্যুৎ ঘাটতি দূর করা।',
+    details: 'উপকূলীয় এলাকায় সৌর বিদ্যুৎ প্যানেল স্থাপন, বায়ু বিদ্যুৎ টার্বাইন প্রকল্প গ্রহণ, প্রত্যন্ত গ্রামে সোলার হোম সিস্টেম সরবরাহ এবং নবায়নযোগ্য জ্বালানিতে স্থানীয় উদ্যোক্তাদের বিনিয়োগে সহায়তা করা হবে। এর ফলে শিল্প ও পর্যটন খাতে বিদ্যুৎ সরবরাহ নিশ্চিত হবে এবং পরিবেশবান্ধব উন্নয়ন ত্বরান্বিত হবে।',
+  },
+  {
+    id: 8,
+    icon: '🛣️',
+    title: 'সড়ক, সেতু ও অবকাঠামো উন্নয়ন',
+    short: 'উখিয়া-টেকনাফের প্রতিটি ইউনিয়নকে পাকা সড়কে সংযুক্ত করা এবং টেকনাফ-কক্সবাজার মহাসড়ক চার লেনে উন্নীত করার দাবি বাস্তবায়ন।',
+    details: 'গ্রামীণ সড়ক পাকাকরণ, গুরুত্বপূর্ণ সেতু নির্মাণ, টেকনাফ-কক্সবাজার মহাসড়ক সম্প্রসারণ, বন্দর ও হাট-বাজারের সাথে সংযোগ সড়ক উন্নয়ন এবং পাহাড়ি এলাকায় নিরাপদ যোগাযোগ ব্যবস্থা গড়ে তোলা হবে। উন্নত যোগাযোগ ব্যবস্থা পর্যটন, বাণিজ্য ও কৃষি সকল খাতকে সমৃদ্ধ করবে।',
+  },
+  {
+    id: 9,
+    icon: '🌿',
+    title: 'পরিবেশ সংরক্ষণ ও সবুজ উখিয়া-টেকনাফ',
+    short: 'বনভূমি ধ্বংস রোধ, উপকূলীয় বনায়ন, দূষণ নিয়ন্ত্রণ এবং জীববৈচিত্র্য রক্ষায় কঠোর পদক্ষেপ গ্রহণ করা।',
+    details: 'উখিয়া-টেকনাফের বনভূমি রক্ষায় কঠোর আইন প্রয়োগ, ঘূর্ণিঝড় ও জলোচ্ছাস প্রতিরোধে উপকূলীয় বনায়ন, নদী-খাল পরিষ্কার ও বর্জ্য ব্যবস্থাপনা উন্নয়ন, প্লাস্টিক দূষণ নিয়ন্ত্রণ, পার্ক ও সবুজ স্থান বৃদ্ধি এবং পরিবেশ সচেতনতামূলক কর্মশালা আয়োজন করা হবে।',
+  },
+];
+
+// ─── Angikar Section Component ───────────────────────────────────
+function AngikarSection() {
+  const [expanded, setExpanded] = useState(null);
+  const [showAll, setShowAll] = useState(false);
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
+
+  const visibleCards = showAll ? ANGIKARS : ANGIKARS.slice(0, 6);
+
+  return (
+    <section className="angikar-section section-pad" ref={ref}>
+      <div className="container">
+        <div className="section-header-center">
+          <div className="gold-line gold-line-center" />
+          <span className="section-eyebrow">উন্নয়নের রোডম্যাপ</span>
+          <h2 className="section-title bangla-title">অঙ্গীকার ও প্রতিশ্রুতি</h2>
+          <p className="angikar-subtitle">উখিয়া-টেকনাফের সার্বিক উন্নয়নে আমার সুনির্দিষ্ট প্রতিশ্রুতি</p>
+        </div>
+
+        <div className={`angikar-grid ${inView ? 'visible' : ''}`}>
+          {visibleCards.map((item, i) => (
+            <div
+              key={item.id}
+              className={`angikar-card ${expanded === item.id ? 'angikar-card--open' : ''}`}
+              style={{ animationDelay: `${i * 0.08}s` }}
+            >
+              <div className="angikar-card-top" onClick={() => setExpanded(expanded === item.id ? null : item.id)}>
+                <div className="angikar-card-icon-wrap">
+                  <span className="angikar-card-icon">{item.icon}</span>
+                </div>
+                <div className="angikar-card-header">
+                  <h3 className="angikar-card-title">{item.title}</h3>
+                  <p className="angikar-card-short">{item.short}</p>
+                </div>
+                <button className="angikar-toggle" aria-label="বিস্তারিত">
+                  <span className={`angikar-toggle-icon ${expanded === item.id ? 'open' : ''}`}>▾</span>
+                </button>
+              </div>
+
+              {expanded === item.id && (
+                <div className="angikar-card-details">
+                  <div className="angikar-detail-divider" />
+                  <p className="angikar-detail-text">{item.details}</p>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        {!showAll && ANGIKARS.length > 6 && (
+          <div className="center-cta" style={{ marginTop: '2.5rem' }}>
+            <button
+              className="btn-outline angikar-show-more"
+              onClick={() => setShowAll(true)}
+              style={{ color: 'var(--forest)', borderColor: 'var(--forest)' }}
+            >
+              আরও {ANGIKARS.length - 6}টি অঙ্গীকার দেখুন ↓
+            </button>
+          </div>
+        )}
+        {showAll && (
+          <div className="center-cta" style={{ marginTop: '2.5rem' }}>
+            <button
+              className="btn-outline angikar-show-more"
+              onClick={() => setShowAll(false)}
+              style={{ color: 'var(--forest)', borderColor: 'var(--forest)' }}
+            >
+              কম দেখুন ↑
+            </button>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
   const heroRef = useRef(null);
   const [parallax, setParallax] = useState(0);
@@ -134,7 +243,6 @@ export default function Home() {
 
   const { ref: newsRef, inView: newsInView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
-  // Live news from Sheets, sorted by date
   const { data: allNews } = useSheetData(
     CONFIG.sheets.news.enabled ? CONFIG.sheets.news.url : null,
     NEWS
@@ -149,18 +257,12 @@ export default function Home() {
         <div className="hero-bg" style={{ transform: `translateY(${parallax}px)` }} />
         <div className="hero-overlay" />
         <div className="hero-pattern" />
-        {/* Large watermark behind everything */}
         <div className="hero-watermark" aria-hidden="true">
           <DhanerShish size={380} opacity={0.04} />
         </div>
 
         <div className="container hero-inner">
           <div className="hero-content">
-            {/* BNP pill — sits above the location badge */}
-            {/* <div className="hero-bnp-pill">
-              <DhanerShish size={20} opacity={1} />
-              <span>বাংলাদেশ জাতীয়তাবাদী দল · বিএনপি</span>
-            </div> */}
             <div className="hero-badge">
               <span className="badge-dot" />
               কক্সবাজার-৪ | উখিয়া - টেকনাফ
@@ -168,10 +270,10 @@ export default function Home() {
             <h1 className="hero-title bangla-title">{MP.name}</h1>
             <div className="hero-role">
               <TypeWriter texts={[
-                'মাননীয় সংসদ সদস্য',
+                'মাননীয় সংসদ সদস্য, কক্সবাজার-৪',
                 'সভাপতি, কক্সবাজার জেলা বিএনপি',
-                'সাবেক সংসদীয় হুইপ',
-                'কক্সবাজার-৪ সবার',
+                'সাবেক সংসদীয় হুইপ'
+                // 'কক্সবাজার-৪ সবার',
               ]} />
             </div>
             <p className="hero-desc">
@@ -194,34 +296,11 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-        <div className="scroll-hint">
-          <div className="scroll-mouse" />
-          <span>স্ক্রোল করুন</span>
-        </div>
+        {/* scroll hint removed */}
       </section>
 
       {/* BNP BAND */}
       <BnpBand />
-
-      {/* ACHIEVEMENT STATS — two themed groups */}
-      <section className="stats-section section-pad-sm">
-        <div className="container">
-          {STAT_GROUPS.map((group, gi) => (
-            <div key={gi} className="stat-group">
-              <div className="stat-group-header">
-                <span className="stat-group-label">{group.label}</span>
-                <div className="stat-group-line" />
-              </div>
-              <div className="stats-grid">
-                {group.items.map((item, ii) => (
-                  <StatCard key={ii} item={item} delay={(gi*3+ii)*0.1} />
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* INTRO BAND */}
       <section className="intro-band section-pad">
@@ -240,15 +319,18 @@ export default function Home() {
             <span className="section-eyebrow">সংক্ষিপ্ত পরিচিতি</span>
             <h2 className="section-title bangla-title">জনসেবায় প্রতিশ্রুতিবদ্ধ একজন নেতা</h2>
             <p className="bangla-body" style={{ color: 'var(--text-muted)', marginBottom: '1rem' }}>
-              আলহাজ্ব শাহজাহান চৌধুরী কক্সবাজার-৪ আসনের চারবার নির্বাচিত সংসদ সদস্য। তিনি বাংলাদেশ জাতীয়তাবাদী দলের (বিএনপি) কক্সবাজার জেলা সভাপতি এবং সাবেক সংসদীয় হুইপ।
+              আলহাজ্ব শাহজাহান চৌধুরী কক্সবাজার-৪ আসনের পাঁচবার নির্বাচিত সংসদ সদস্য। তিনি বাংলাদেশ জাতীয়তাবাদী দলের (বিএনপি) কক্সবাজার জেলা সভাপতি এবং সাবেক সংসদীয় হুইপ।
             </p>
             <p className="bangla-body" style={{ color: 'var(--text-muted)' }}>
-              তিন দশকেরও বেশি সময় ধরে উখিয়া-টেকনাফ এলাকার মানুষের শিক্ষা, স্বাস্থ্য, যোগাযোগ ও কর্মসংস্থানের জন্য অক্লান্ত পরিশ্রম করে আসছেন।
+              পাঁচ দশকেরও বেশি সময় ধরে উখিয়া-টেকনাফ এলাকার মানুষের শিক্ষা, স্বাস্থ্য, অবকাঠামোগত উন্নয়ন, যোগাযোগ ও কর্মসংস্থানের জন্য অক্লান্ত পরিশ্রম করে আসছেন।
             </p>
             <Link to="/about" className="btn-primary" style={{ marginTop: '1.75rem' }}>আরও জানুন →</Link>
           </div>
         </div>
       </section>
+
+      {/* অঙ্গীকার ও প্রতিশ্রুতি */}
+      <AngikarSection />
 
       {/* SOCIAL WORK */}
       <section className="social-highlight section-pad" style={{ background: 'var(--cream)' }}>
@@ -308,7 +390,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA — redesigned two-column */}
+      {/* CTA */}
       <section className="cta-section">
         <div className="cta-bg-gradient" />
         <div className="cta-bg-watermark" aria-hidden="true">

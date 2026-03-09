@@ -1,3 +1,4 @@
+/* ── Bio Grid ──────────────────────────────────────── */
 .about-bio-grid {
   display: grid;
   grid-template-columns: 1fr 1.6fr;
@@ -39,6 +40,7 @@
   letter-spacing: 0.06em;
 }
 
+/* ── Info Card ──────────────────────────────────────── */
 .about-info-card {
   background: white;
   border-radius: 16px;
@@ -60,24 +62,38 @@
 
 .about-info-row {
   display: flex;
-  justify-content: space-between;
-  padding: 0.6rem 0;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.65rem 0;
   border-bottom: 1px solid rgba(201,168,76,0.1);
-  font-size: 0.88rem;
+}
+
+.about-info-row:last-child {
+  border-bottom: none;
 }
 
 .about-info-label {
   color: var(--text-muted);
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 0.82rem;
   flex-shrink: 0;
+  min-width: 90px;
+  padding-top: 0.15rem;
+  font-family: 'Tiro Bangla', serif;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
 .about-info-value {
   color: var(--charcoal);
   font-weight: 600;
-  text-align: right;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  font-family: 'Tiro Bangla', serif;
+  text-align: left;
 }
 
+/* ── Bio paras ──────────────────────────────────────── */
 .about-bio-paras {
   display: flex;
   flex-direction: column;
@@ -85,7 +101,63 @@
   color: var(--text-muted);
 }
 
-/* Timeline */
+/* ── Extra cards below bio (desktop) ──────────────────── */
+.about-extra-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.about-extra-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  background: white;
+  border-radius: 14px;
+  padding: 1.1rem 1.2rem;
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(201,168,76,0.12);
+  transition: var(--transition);
+}
+
+.about-extra-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(13,59,46,0.1);
+  border-color: rgba(201,168,76,0.3);
+}
+
+.about-extra-icon {
+  font-size: 1.6rem;
+  flex-shrink: 0;
+  line-height: 1;
+  margin-top: 0.1rem;
+}
+
+.about-extra-value {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1.2;
+  margin-bottom: 0.15rem;
+}
+
+.about-extra-title {
+  font-family: var(--font-bangla);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--forest);
+  margin-bottom: 0.3rem;
+}
+
+.about-extra-desc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+/* ── Timeline ──────────────────────────────────────── */
 .timeline {
   position: relative;
   max-width: 800px;
@@ -170,7 +242,159 @@
   line-height: 1.6;
 }
 
-/* Achievements */
+/* ── আন্দোলন Section ──────────────────────────────── */
+.andolon-section {
+  background: linear-gradient(135deg, #0d3b2e 0%, #1a5c45 60%, #0d3b2e 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.andolon-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a84c' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.andolon-subtitle {
+  font-family: var(--font-bangla);
+  font-size: 1rem;
+  color: rgba(201,168,76,0.75);
+  text-align: center;
+  margin-top: 0.75rem;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+
+.andolon-section .section-eyebrow {
+  color: rgba(201,168,76,0.8);
+}
+
+.andolon-section .section-title {
+  color: white;
+}
+
+.andolon-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 3rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.andolon-card {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.andolon-list.visible .andolon-card {
+  animation: slideInLeft 0.6s ease both;
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.andolon-year-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  width: 80px;
+}
+
+.andolon-icon {
+  font-size: 2rem;
+  width: 56px;
+  height: 56px;
+  background: rgba(201,168,76,0.15);
+  border: 2px solid rgba(201,168,76,0.35);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.andolon-year {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-top: 0.5rem;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.andolon-vline {
+  width: 2px;
+  flex: 1;
+  min-height: 40px;
+  background: linear-gradient(to bottom, rgba(201,168,76,0.4), transparent);
+  margin-top: 0.5rem;
+}
+
+.andolon-content {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: 18px;
+  padding: 1.75rem 2rem;
+  flex: 1;
+  backdrop-filter: blur(8px);
+  transition: var(--transition);
+}
+
+.andolon-content:hover {
+  background: rgba(255,255,255,0.09);
+  border-color: rgba(201,168,76,0.4);
+  transform: translateY(-3px);
+}
+
+.andolon-title {
+  font-family: var(--font-bangla);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.85rem;
+  line-height: 1.5;
+}
+
+.andolon-desc {
+  font-family: var(--font-bangla);
+  font-size: 0.92rem;
+  color: rgba(255,255,255,0.72);
+  line-height: 1.85;
+  margin-bottom: 1.1rem;
+}
+
+.andolon-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.andolon-tag {
+  font-family: var(--font-bangla);
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(201,168,76,0.18);
+  color: var(--gold);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 20px;
+  padding: 0.25rem 0.75rem;
+}
+
+/* ── Achievements ──────────────────────────────────── */
 .achievements-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -201,9 +425,11 @@
   line-height: 1.7;
 }
 
+/* ── Responsive ──────────────────────────────────────── */
 @media (max-width: 900px) {
   .about-bio-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .achievements-grid { grid-template-columns: 1fr 1fr; }
+  .about-extra-cards { grid-template-columns: 1fr 1fr; }
 
   .timeline::before { left: 20px; }
   .timeline-item {
@@ -217,8 +443,28 @@
   .timeline-connector { right: auto; left: 10px; }
   .timeline-item.right .timeline-connector { left: 10px; }
   .timeline-card { max-width: 100%; }
+
+  .andolon-card {
+    gap: 1.25rem;
+  }
+  .andolon-year-col { width: 60px; }
+  .andolon-icon { width: 48px; height: 48px; font-size: 1.6rem; }
 }
 
 @media (max-width: 600px) {
   .achievements-grid { grid-template-columns: 1fr; }
+  .about-extra-cards { grid-template-columns: 1fr; }
+
+  .andolon-card {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .andolon-year-col {
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .andolon-vline { display: none; }
+  .andolon-content { padding: 1.25rem 1.25rem; }
 }

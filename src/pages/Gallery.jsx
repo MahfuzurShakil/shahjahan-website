@@ -79,25 +79,21 @@ function VideoModal({ video, onClose }) {
   );
 }
 
-// ── Source indicator ─────────────────────────────────────────────
-function SourceBadge({ source, error }) {
-  if (error) return (
-    <div className="source-badge source-error" title={error}>
-      <span className="source-dot error" />
-      স্থানীয় ডেটা (Sheet লোড হয়নি)
-    </div>
-  );
-  if (source === 'sheet') return (
-    <div className="source-badge">
-      <span className="source-dot" />
-      Google Sheets থেকে লাইভ আপডেট
-    </div>
-  );
-  return null;
-}
-
 // ── Loading skeleton ─────────────────────────────────────────────
-function LoadingSkeleton({ count = 6 }) {
+function LoadingSkeleton({ count = 6, type = 'photo' }) {
+  if (type === 'video') {
+    return (
+      <div className="videos-grid">
+        {Array.from({ length: count }).map((_, i) => (
+          <div key={i} className="gallery-item skeleton-card">
+            <div className="skeleton-img skeleton-video" />
+            <div className="skeleton-line" style={{ margin: '10px 12px 4px' }} />
+            <div className="skeleton-line" style={{ margin: '0 12px 12px', width: '50%' }} />
+          </div>
+        ))}
+      </div>
+    );
+  }
   return (
     <div className="gallery-grid">
       {Array.from({ length: count }).map((_, i) => (
@@ -189,7 +185,6 @@ export default function Gallery() {
                     </button>
                   ))}
                 </div>
-                <SourceBadge source={gallerySource} error={galleryError} />
               </div>
 
               {galleryLoading ? (
@@ -243,14 +238,10 @@ export default function Gallery() {
                     </button>
                   ))}
                 </div>
-                <SourceBadge source={videosSource} error={videosError} />
               </div>
 
               {videosLoading ? (
-                <div className="sheet-loading">
-                  <div className="sheet-spinner" />
-                  <span>ভিডিও লোড হচ্ছে...</span>
-                </div>
+                <LoadingSkeleton count={6} type="video" />
               ) : (
                 <>
                   <div className="videos-grid">

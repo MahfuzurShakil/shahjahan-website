@@ -465,6 +465,11 @@
   animation: shimmer 1.4s infinite;
 }
 
+.skeleton-img.skeleton-video {
+  aspect-ratio: 16/9;
+  border-radius: 0;
+}
+
 .skeleton-line {
   height: 14px;
   margin-top: 10px;

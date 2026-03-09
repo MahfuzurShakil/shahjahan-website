@@ -36,36 +36,59 @@ export default function SocialWork() {
         </div>
       </section>
 
-      {/* Detail cards */}
-      <section className="social-detail-section section-pad" style={{ background: 'var(--cream)' }}>
+      {/* Detail section — professional feature layout */}
+      <section className="social-detail-section section-pad">
         <div className="container">
-          <div className="section-header-center">
-            <div className="gold-line gold-line-center" />
-            <span className="section-eyebrow">বিস্তারিত কার্যক্রম</span>
-            <h2 className="section-title bangla-title">সামাজিক উন্নয়নের বিভিন্ন খাত</h2>
+
+          {/* Section header */}
+          <div className="sds-header">
+            <div className="sds-header-left">
+              <div className="gold-line" style={{ marginBottom: '1rem' }} />
+              <span className="section-eyebrow">বিস্তারিত কার্যক্রম</span>
+              <h2 className="section-title bangla-title">সামাজিক উন্নয়নের বিভিন্ন খাত</h2>
+            </div>
+            <p className="sds-header-desc">
+              উখিয়া-টেকনাফের প্রতিটি মানুষের জীবনমান উন্নয়নে শিক্ষা, স্বাস্থ্য,
+              অবকাঠামো ও কর্মসংস্থান — প্রতিটি খাতে বহুমাত্রিক কার্যক্রম পরিচালিত হচ্ছে।
+            </p>
           </div>
 
-          <div className="social-detail-grid">
+          {/* Cards grid */}
+          <div className="sds-grid">
             {SOCIAL_WORKS.map((item, i) => (
               <div
                 key={item.id}
-                className="social-detail-card"
-                style={{ '--card-accent': item.color, animationDelay: `${i * 0.1}s` }}
+                className="sds-item"
+                style={{ '--acc': item.color, animationDelay: `${i * 0.08}s` }}
               >
-                <div className="sdc-header">
-                  <div className="sdc-icon-bg">
-                    <span>{item.icon}</span>
+                {/* Top accent stripe */}
+                <div className="sds-item__stripe" />
+
+                <div className="sds-item__inner">
+                  {/* Left: icon + stat stacked */}
+                  <div className="sds-item__left">
+                    <div className="sds-item__icon-ring">
+                      <span className="sds-item__icon">{item.icon}</span>
+                    </div>
+                    <div className="sds-item__stat">
+                      <span className="sds-item__count">{item.count}</span>
+                      <span className="sds-item__unit">{item.unit}</span>
+                    </div>
                   </div>
-                  <div className="sdc-count-wrap">
-                    <span className="sdc-count">{item.count}</span>
-                    <span className="sdc-unit">{item.unit}</span>
+
+                  {/* Divider */}
+                  <div className="sds-item__divider" />
+
+                  {/* Right: text */}
+                  <div className="sds-item__right">
+                    <h3 className="sds-item__title bangla-title">{item.title}</h3>
+                    <p className="sds-item__desc">{item.desc}</p>
                   </div>
                 </div>
-                <h3 className="sdc-title">{item.title}</h3>
-                <p className="sdc-desc">{item.desc}</p>
               </div>
             ))}
           </div>
+
         </div>
       </section>
 

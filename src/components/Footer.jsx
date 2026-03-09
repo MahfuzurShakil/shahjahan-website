@@ -40,8 +40,13 @@ export default function Footer() {
           {/* Brand column */}
           <div className="footer-brand">
             <div className="footer-logo">
-              <div className="logo-emblem">
-                <span className="logo-initials">শ.চ</span>
+              <div className="logo-emblem footer-logo-emblem">
+                <img
+                  src={MP.photo}
+                  alt={MP.name}
+                  className="logo-photo"
+                  onError={e => { e.target.style.display = 'none'; }}
+                />
               </div>
               <div>
                 <div className="footer-name">{MP.name}</div>
@@ -142,8 +147,13 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="footer-bottom">
         <div className="container footer-bottom-inner">
-          <span>© {year} {MP.name}। সর্বস্বত্ব সংরক্ষিত।</span>
-          <span>কক্সবাজার-৪ (উখিয়া-টেকনাফ) | নির্বাচনী এলাকা নং ২৯৭</span>
+          <span className="footer-bottom-copy">
+            © {year} <strong>{MP.name}</strong>। সর্বস্বত্ব সংরক্ষিত।
+          </span>
+          <span className="footer-bottom-divider">◆</span>
+          <span className="footer-bottom-seat">
+            কক্সবাজার-৪ (উখিয়া-টেকনাফ)&nbsp;&nbsp;|&nbsp;&nbsp;নির্বাচনী এলাকা নং ২৯৭
+          </span>
         </div>
       </div>
     </footer>

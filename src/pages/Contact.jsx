@@ -195,9 +195,9 @@ export default function Contact() {
               <form className="contact-form" onSubmit={handleSubmit}>
                 <h3 className="form-title">বার্তা পাঠান</h3>
 
-                <div className="form-delivery-note">
+                {/* <div className="form-delivery-note">
                   <span>📧</span> ইমেইল + <span>💬</span> হোয়াটসঅ্যাপ — দুটোতেই পৌঁছাবে
-                </div>
+                </div> */}
 
                 <div className="form-row">
                   <div className="form-group">

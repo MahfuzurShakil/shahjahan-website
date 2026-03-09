@@ -2,7 +2,7 @@
    HERO
 ═══════════════════════════════════════ */
 .hero {
-  min-height: 100svh;
+  min-height: 91svh;
   position: relative;
   display: flex;
   align-items: center;
@@ -52,8 +52,8 @@
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: center;
-  padding: 6rem 1.25rem 4rem;
-  min-height: 100svh;
+  padding: 5rem 1.25rem 3.5rem;
+  min-height: 91svh;
 }
 
 .hero-content { animation: fadeUp 0.8s ease both; }
@@ -147,7 +147,7 @@
 
 .hero-photo {
   width: 100%;
-  max-width: 400px;
+  max-width: 364px;
   object-fit: cover;
   border-radius: 24px;
   position: relative;
@@ -676,6 +676,173 @@
 }
 
 /* ═══════════════════════════════════════
+   INTRO IMAGE — slightly shorter
+═══════════════════════════════════════ */
+.intro-img {
+  width: 100%;
+  max-height: 460px;
+  border-radius: 20px;
+  display: block;
+  box-shadow: var(--shadow-card);
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* ═══════════════════════════════════════
+   অঙ্গীকার ও প্রতিশ্রুতি SECTION
+═══════════════════════════════════════ */
+.angikar-section {
+  background: white;
+}
+
+.angikar-subtitle {
+  font-family: var(--font-bangla);
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  line-height: 1.7;
+}
+
+.angikar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.angikar-grid.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.angikar-grid.visible .angikar-card {
+  animation: fadeUp 0.55s ease both;
+}
+
+.angikar-card {
+  background: var(--ivory);
+  border: 1px solid rgba(201,168,76,0.18);
+  border-radius: 18px;
+  overflow: hidden;
+  transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+  cursor: pointer;
+}
+
+.angikar-card:hover {
+  box-shadow: 0 8px 32px rgba(13,59,46,0.1);
+  transform: translateY(-3px);
+  border-color: rgba(201,168,76,0.4);
+}
+
+.angikar-card--open {
+  border-color: var(--gold);
+  box-shadow: 0 8px 32px rgba(201,168,76,0.15);
+}
+
+.angikar-card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.4rem 1.25rem;
+}
+
+.angikar-card-icon-wrap {
+  width: 46px;
+  height: 46px;
+  background: linear-gradient(135deg, var(--forest), var(--emerald));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.angikar-card-icon {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.angikar-card-header {
+  flex: 1;
+  min-width: 0;
+}
+
+.angikar-card-title {
+  font-family: var(--font-bangla);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--forest);
+  margin-bottom: 0.4rem;
+  line-height: 1.4;
+}
+
+.angikar-card-short {
+  font-family: var(--font-bangla);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.angikar-card--open .angikar-card-short {
+  -webkit-line-clamp: unset;
+  overflow: visible;
+}
+
+.angikar-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px 0 0 0;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.angikar-toggle-icon {
+  display: inline-block;
+  font-size: 1.1rem;
+  color: var(--gold);
+  transition: transform 0.25s ease;
+  line-height: 1;
+}
+
+.angikar-toggle-icon.open {
+  transform: rotate(180deg);
+}
+
+.angikar-card-details {
+  padding: 0 1.25rem 1.4rem;
+  animation: fadeUp 0.3s ease both;
+}
+
+.angikar-detail-divider {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(201,168,76,0.4), transparent);
+  margin-bottom: 1rem;
+}
+
+.angikar-detail-text {
+  font-family: var(--font-bangla);
+  font-size: 0.85rem;
+  color: var(--charcoal);
+  line-height: 1.85;
+}
+
+.angikar-show-more {
+  font-family: var(--font-bangla);
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: none;
+}
+
+/* ═══════════════════════════════════════
    RESPONSIVE
 ═══════════════════════════════════════ */
 @media (max-width: 1024px) {
@@ -684,6 +851,7 @@
   .cta-inner { grid-template-columns: 1fr; gap: 2.5rem; }
   .cta-right { grid-template-columns: 1fr 1fr; }
   .cta-desc { max-width: 100%; }
+  .angikar-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 900px) {
@@ -716,4 +884,5 @@
   .hero-photo-badge { right: 0; }
   .cta-right { grid-template-columns: 1fr; }
   .bnp-band-quote { display: none; }
+  .angikar-grid { grid-template-columns: 1fr; }
 }
